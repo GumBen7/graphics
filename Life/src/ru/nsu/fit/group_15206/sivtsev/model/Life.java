@@ -1,6 +1,6 @@
 package ru.nsu.fit.group_15206.sivtsev.model;
 
-import ru.nsu.fit.group_15206.sivtsev.controller.Controller;
+import java.util.Vector;
 
 public class Life {
 
@@ -14,17 +14,17 @@ public class Life {
     private double SND_IMPACT;
 
     private final int[][] firstLevel = {{-1, -1},
-            {0, -1},
-            {-1, 0},
-            {1, 0},
-            {-1, 1},
-            {0, 1}};
+                                        {0, -1},
+                                        {-1, 0},
+                                        {1, 0},
+                                        {-1, 1},
+                                        {0, 1}};
     private final int[][] secondLevel = {{0, -2},
-            {1, -1},
-            {1, 1},
-            {0, 2},
-            {-2, -1},
-            {-2, 1}};
+                                         {1, -1},
+                                         {1, 1},
+                                         {0, 2},
+                                         {-2, -1},
+                                         {-2, 1}};
 
     public void setDefaultSettings() {
         LIVE_BEGIN = 2.;
@@ -75,19 +75,38 @@ public class Life {
         field = f;
     }
 
-    public void setLife(){
+    public void setField(Field f){
+        field = f;
+    }
 
+    public Field step(){
+        Field f = new Field(field.getWidth(), field.getHeight());
+        for (int i = 0; i < field.getHeight(); ++i){
+            int realXSize = (i % 2 == 0) ? field.getWidth() - 1 : field.getWidth();
+            for (int j = 0; j < realXSize; ++j){
+                if (field.getCellStatus(j,i)){
+                    if (getImpact(j,i) < LIVE_BEGIN || getImpact(j,i) > LIVE_END){
+                        f.setCellDead(j,i);
+                    }
+                }
+                if (getImpact(j,i) > BIRTH_BEGIN && getImpact(j,i) < BIRTH_END){
+                    f.setCellAlive(j,i);
+                }
+            }
+        }
+        return f;
     }
 
     public int getAliveNeighborsOfLevel(int x, int y, int[][] pos){
         int s = 0;
         for (int[] coord : pos){
-            if (field.getCell(x+coord[0],y+coord[1]).isAlive()){
+            if (field.getCellStatus(x+coord[0],y+coord[1])){
                 ++s;
             }
         }
         return s;
     }
+
 
     public double getImpact(int x, int y) {
         return (FST_IMPACT*getAliveNeighborsOfLevel(x,y,firstLevel) + SND_IMPACT*getAliveNeighborsOfLevel(x,y,secondLevel));

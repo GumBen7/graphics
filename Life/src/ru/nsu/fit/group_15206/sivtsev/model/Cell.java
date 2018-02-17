@@ -24,7 +24,4 @@ public class Cell {
     public void setStatus(boolean b){
         isAlive = b;
     }
-    public boolean getStatus(){
-        return isAlive;
-    }
 }

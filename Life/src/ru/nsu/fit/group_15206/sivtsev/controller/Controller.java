@@ -14,12 +14,14 @@ public class Controller {
         life.setDefaultSettings();
     }
 
-    public void start(int n){
+    public void init(int n){
         playLife(n);
     }
 
     public void playLife(int n) {
-
+        for (int i = 0; i < n; ++i){
+            life.setField(life.step());
+        }
     }
 
 }
