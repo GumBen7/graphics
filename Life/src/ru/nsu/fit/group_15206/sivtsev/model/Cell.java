@@ -9,6 +9,9 @@ public class Cell {
     public Cell(boolean b){
         isAlive = b;
     }
+    public boolean isAlive(){
+        return isAlive;
+    }
     public void invert(){
         isAlive = !isAlive;
     }
