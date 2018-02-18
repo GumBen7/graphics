@@ -7,13 +7,14 @@ public class Field {
     private Vector<Vector<Cell>> cellVector;
 
     public Field(int x, int y){
-        cellVector = new Vector<>(y);
-        for (Vector<Cell> vectorRow : cellVector){
+        cellVector = new Vector<>();
+        for (int i = 0; i < y; ++i){
+            Vector<Cell> vectorRow = new Vector<>();
             int realX = (cellVector.indexOf(vectorRow) % 2 == 0) ? x-1 : x;
-            vectorRow = new Vector<>(realX);
-            for (Cell newCell : vectorRow){
-                newCell = new Cell();
+            for (int j = 0; j < realX; ++j){
+                vectorRow.add(new Cell());
             }
+            cellVector.add(vectorRow);
         }
     }
 

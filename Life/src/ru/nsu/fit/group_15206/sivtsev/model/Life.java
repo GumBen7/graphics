@@ -85,8 +85,8 @@ public class Life {
             int realXSize = (i % 2 == 0) ? field.getWidth() - 1 : field.getWidth();
             for (int j = 0; j < realXSize; ++j){
                 if (field.getCellStatus(j,i)){
-                    if (getImpact(j,i) < LIVE_BEGIN || getImpact(j,i) > LIVE_END){
-                        f.setCellDead(j,i);
+                    if (getImpact(j,i) >= LIVE_BEGIN && getImpact(j,i) <= LIVE_END){
+                        f.setCellAlive(j,i);
                     }
                 }
                 if (getImpact(j,i) > BIRTH_BEGIN && getImpact(j,i) < BIRTH_END){
@@ -100,7 +100,7 @@ public class Life {
     public int getAliveNeighborsOfLevel(int x, int y, int[][] pos){
         int s = 0;
         for (int[] coord : pos){
-            if (field.getCellStatus(x+coord[0],y+coord[1])){
+            if (x+coord[0]>0 && x+coord[0]<field.getWidth()-1 && y+coord[1]>0 && y+coord[1]<field.getHeight()-1 && field.getCellStatus(x+coord[0],y+coord[1])){
                 ++s;
             }
         }
