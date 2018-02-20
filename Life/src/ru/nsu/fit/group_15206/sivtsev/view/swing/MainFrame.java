@@ -1,8 +1,9 @@
 package ru.nsu.fit.group_15206.sivtsev.view.swing;
 
+
 import javax.swing.*;
 
-public class MainFrame extends JFrame {
+public class MainFrame extends JFrame{
 
     public MainFrame(){
         try {

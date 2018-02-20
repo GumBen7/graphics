@@ -10,7 +10,7 @@ public abstract class Parser {
         Config config = new Config();
         config.m = 4; config.n = 5;
         config.w = 1;
-        config.k = 5;
+        config.k = 30;
         config.all = 2;
         config.coords = new Vector<>();
         int[] xy = {1,2}, xy2 = {2,3};

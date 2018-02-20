@@ -1,4 +1,7 @@
 package ru.nsu.fit.group_15206.sivtsev.view;
 
-public class View {
+import ru.nsu.fit.group_15206.sivtsev.model.Field;
+
+public interface View {
+    void showField(Field f);
 }
