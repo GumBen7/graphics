@@ -1,6 +1,5 @@
 package ru.nsu.fit.group_15206.sivtsev.model;
 
-
 import java.util.Vector;
 
 public class Field {

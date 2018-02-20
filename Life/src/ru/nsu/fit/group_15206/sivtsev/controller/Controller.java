@@ -8,8 +8,8 @@ public class Controller {
     private Field field;
 
 
-    public Controller(int x, int y) {
-        field = new Field(x, y);
+    public Controller(Config config) {
+        field = new Field(config.m, config.n);
         life = new Life(field);
         life.setDefaultSettings();
     }
